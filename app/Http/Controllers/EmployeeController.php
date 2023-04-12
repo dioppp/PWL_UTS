@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
+use App\Models\EmployeeModel;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
@@ -34,7 +35,7 @@ class EmployeeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Employee $employee)
+    public function show(EmployeeModel $employee)
     {
         //
     }
@@ -42,7 +43,7 @@ class EmployeeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Employee $employee)
+    public function edit(EmployeeModel $employee)
     {
         //
     }
@@ -50,7 +51,7 @@ class EmployeeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Employee $employee)
+    public function update(Request $request, EmployeeModel $employee)
     {
         //
     }
@@ -58,7 +59,7 @@ class EmployeeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Employee $employee)
+    public function destroy(EmployeeModel $employee)
     {
         //
     }
