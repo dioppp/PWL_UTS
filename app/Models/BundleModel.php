@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class BundleModel extends Model
 {
     use HasFactory;
+    protected $table = 'bundles';
+    protected $fillable = [
+        'name',
+        'price'
+    ];
 }
