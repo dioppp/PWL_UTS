@@ -19,11 +19,13 @@ class UserSeeder extends Seeder
                 'name' => 'Fikril Hadad Ramadhani',
                 'email' => 'fikrilha099@gmail.com',
                 'password' => Hash::make('271101'),
+                'role' => 'admin'
             ],
             [
                 'name' => 'Frisaranda Diouf Julio',
                 'email' => 'frisaranda@gmail.com',
                 'password' => Hash::make('supardi123'),
+                'role' => 'admin'
             ]
         ]);
     }
