@@ -20,16 +20,10 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
-
 Route::get('logout', [LoginController::class, 'logout']);
 
 Route::middleware(['auth'])->group(function(){
     Route::get('/', function () {
         return view('welcome');
     });
-});
-
-Route::middleware(['role.check:admin'])->group(function(){
-    Route::get('/home', [HomeController::class, 'admin'])->name('admin');
 });
