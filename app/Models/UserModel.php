@@ -19,6 +19,7 @@ class UserModel extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'username',
         'email',
         'password',
         'role'
