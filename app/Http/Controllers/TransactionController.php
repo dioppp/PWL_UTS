@@ -14,7 +14,7 @@ class TransactionController extends Controller
     public function index()
     {
         $trans = TransactionModel::join('users', 'users.id','=','transactions.user_id')
-        ->join('shoes', 'shoes.id',',','transactions.shoe_id')
+        ->join('shoes', 'shoes.id','=','transactions.shoe_id')
         ->join('bundles', 'bundles.id','=','transactions.bund_id')
         ->select('transactions.id as t_id, users.name as u_name, shoes.id as s_id, bundles.name as b_name, bundles.price as b_price, transactions.status as t_status')
         ->get();

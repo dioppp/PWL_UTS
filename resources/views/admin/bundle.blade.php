@@ -10,7 +10,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href={{route('home')}}>Admin Home</a></li>
+              <li class="breadcrumb-item"><a href={{route('admin.home')}}>Admin Home</a></li>
               <li class="breadcrumb-item active">Admin Home</li>
             </ol>
           </div>
@@ -43,7 +43,7 @@
             <!-- /.card-header -->
             <div class="card-body">
 
-                <a href="{{url('admin/add')}}" class="btn btn-sm btn-success my-2">Add Bundle</a>
+                <a href="{{route('bundle.create')}}" class="btn btn-sm btn-success my-2">Add Bundle</a>
             
                 <table class="table table-bordered table-striped">
                   <thead>

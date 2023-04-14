@@ -22,7 +22,8 @@ class BundleController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.add_bundle')
+                    ->with('data_form', url('/bundle'));
     }
 
     /**
