@@ -6,7 +6,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Bundle</h1>
+            <h1>Transaction</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -26,7 +26,7 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Bundle</h3>
+              <h3 class="card-title">Transaction</h3>
 
               <div class="card-tools">
                 <div class="input-group input-group-sm" style="width: 150px;">
@@ -42,16 +42,17 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-
-                <a href="{{url('admin/add')}}" class="btn btn-sm btn-success my-2">Add Bundle</a>
             
                 <table class="table table-bordered table-striped">
                   <thead>
                     <tr>
                       <th>No</th>
-                      <th>Bundle ID</th>
-                      <th>Name</th>
+                      <th>ID</th>
+                      <th>Customer</th>
+                      <th>Shoe ID</th>
+                      <th>Bundle</th>
                       <th>Price</th>
+                      <th>Status</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -60,9 +61,12 @@
                       @foreach($data as $i => $m)
                         <tr>
                           <td>{{++$i}}</td>
-                          <td>{{$m->id}}</td>
-                          <td>{{$m->name}}</td>
-                          <td>{{$m->price}}</td>
+                          <td>{{$m->t_id}}</td>
+                          <td>{{$m->u_name}}</td>
+                          <td>{{$m->s_id}}</td>
+                          <td>{{$m->b_name}}</td>
+                          <td>{{$m->b_price}}</td>
+                          <td>{{$m->t_status}}</td>
                           <td>
                             <!-- Bikin tombol edit dan delete -->
                             <a href="{{ url('/admin/'. $m->id.'/edit') }}" class="btn btn-sm btn-warning">edit</a>

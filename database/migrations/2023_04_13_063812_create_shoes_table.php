@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('brand', 30);
             $table->string('color', 15);
             $table->string('material', 15);
-            $table->unsignedBigInteger('cust_id');
-            $table->foreign('cust_id')->references('id')->on('customers');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

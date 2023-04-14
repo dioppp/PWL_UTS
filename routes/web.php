@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BundleController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -32,4 +33,5 @@ Route::middleware(['auth'])->group(function(){
 Route::prefix('admin')->middleware(['role.check'])->group(function(){
         Route::get('/home', [HomeController::class, 'admin'])->name('admin.home');
         Route::resource('/bundle', BundleController::class);
+        Route::resource('/trans', TransactionController::class);
 });
