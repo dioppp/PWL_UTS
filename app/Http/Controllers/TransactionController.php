@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Transaction;
+use App\Models\TransactionModel;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
@@ -12,7 +13,12 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        //
+        $trans = TransactionModel::join('users', 'users.id','=','transactions.user_id')
+        ->join('shoes', 'shoes.id',',','transactions.shoe_id')
+        ->join('bundles', 'bundles.id','=','transactions.bundle_id')
+        ->select('transactions.id as t_id, users.name as u_name,shoes.id as s_id,bundles.name as b_name,bundles.price as b_price, transactions.status as t_status')
+        ->get();
+        return view('admin.transaction')->with('data', $trans);
     }
 
     /**
@@ -34,7 +40,7 @@ class TransactionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Transaction $transaction)
+    public function show()
     {
         //
     }
@@ -42,7 +48,7 @@ class TransactionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Transaction $transaction)
+    public function edit()
     {
         //
     }
@@ -50,7 +56,7 @@ class TransactionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Transaction $transaction)
+    public function update(Request $request )
     {
         //
     }
@@ -58,7 +64,7 @@ class TransactionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Transaction $transaction)
+    public function destroy()
     {
         //
     }

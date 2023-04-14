@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bundle;
+use App\Models\BundleModel;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Bundle\Bundle as BundleBundle;
 
 class BundleController extends Controller
 {
@@ -12,7 +14,7 @@ class BundleController extends Controller
      */
     public function index()
     {
-        //
+         return view('admin.bundle')->with('data', BundleModel::all());
     }
 
     /**
@@ -34,7 +36,7 @@ class BundleController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Bundle $bundle)
+    public function show($id)
     {
         //
     }
@@ -42,7 +44,7 @@ class BundleController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Bundle $bundle)
+    public function edit()
     {
         //
     }
@@ -50,7 +52,7 @@ class BundleController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Bundle $bundle)
+    public function update(Request $request )
     {
         //
     }
@@ -58,7 +60,7 @@ class BundleController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Bundle $bundle)
+    public function destroy()
     {
         //
     }
