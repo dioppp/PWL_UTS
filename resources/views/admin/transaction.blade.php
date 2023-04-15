@@ -6,11 +6,11 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Transaction</h1>
+            <h1>Admin Transaction</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href={{route('amdin.home')}}>Admin Home</a></li>
+              <li class="breadcrumb-item"><a href={{route('admin.home')}}>Admin Home</a></li>
               <li class="breadcrumb-item active">Transaction</li>
             </ol>
           </div>

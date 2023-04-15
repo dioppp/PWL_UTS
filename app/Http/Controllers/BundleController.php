@@ -42,7 +42,7 @@ class BundleController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show()
     {
         //
     }
@@ -50,24 +50,34 @@ class BundleController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit()
+    public function edit($id)
     {
-        //
+        $bundle = BundleModel::find($id);
+        return view('admin.add_bundle')
+        ->with('data', $bundle)
+        ->with('data_form', route('bundle.update'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request )
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|unique:bundles,name,'.$id,
+            'price' => 'required|numeric'
+        ]);
+
+        $output = BundleModel::where('id', '=',$id)->update($request->except(['_token', '_method']));
+        return redirect()->route('bundle.index')->with('message', 'Data Bundle id = '.$id.' berhasil di-Update!!!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy()
+    public function destroy($id)
     {
-        //
+        BundleModel::where('id', '=', $id)->delete();
+        return redirect()->route('admin.home')->with('message', 'Data Bundle id = '.$id.' berhasil dihapus!!!');
     }
 }
