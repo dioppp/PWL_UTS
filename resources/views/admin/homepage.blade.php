@@ -52,7 +52,4 @@
   @endsection
 
   @push('custom_js')
-  <script>
-    alert('Welcome')
-  </script>
   @endpush

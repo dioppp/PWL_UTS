@@ -10,7 +10,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href={{route('amdin.home')}}>Admin Home</a></li>
+              <li class="breadcrumb-item"><a href={{route('admin.home')}}>Home</a></li>
               <li class="breadcrumb-item active">Transaction</li>
             </ol>
           </div>
@@ -53,7 +53,7 @@
                       <th>Bundle</th>
                       <th>Price</th>
                       <th>Status</th>
-                      <th>Action</th>
+                      {{-- <th>Action</th> --}}
                     </tr>
                   </thead>
                   <tbody>
@@ -67,7 +67,7 @@
                           <td>{{$m->b_name}}</td>
                           <td>{{$m->b_price}}</td>
                           <td>{{$m->t_status}}</td>
-                          <td>
+                          {{-- <td>
                             <!-- Bikin tombol edit dan delete -->
                             <a href="{{ url('/admin/'. $m->id.'/edit') }}" class="btn btn-sm btn-warning">edit</a>
 
@@ -76,11 +76,11 @@
                               @method('DELETE')
                               <button type="submit" class="btn btn-sm btn-danger">hapus</button>
                             </form>
-                          </td>
+                          </td> --}}
                         </tr>
                       @endforeach
                     @else
-                      <tr><td colspan="6" class="text-center">Data tidak ada</td></tr>
+                      <tr><td colspan="5" class="text-center">Data tidak ada</td></tr>
                     @endif
                   </tbody>
                 </table>

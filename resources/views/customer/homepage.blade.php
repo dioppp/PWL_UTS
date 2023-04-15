@@ -10,7 +10,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href={{route('home')}}>Home</a></li>
+              <li class="breadcrumb-item"><a href={{route('admin.home')}}>Home</a></li>
               <li class="breadcrumb-item active">Home</li>
             </ol>
           </div>
@@ -52,7 +52,4 @@
   @endsection
 
   @push('custom_js')
-  <script>
-    alert('Welcome')
-  </script>
   @endpush

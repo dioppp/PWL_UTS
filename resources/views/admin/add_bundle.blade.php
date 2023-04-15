@@ -49,16 +49,16 @@
 
                     <div class="form-group">
                         <label>Name</label>
-                        <input class="form-control @error('b_name') is-invalid @enderror" value="{{ isset($data)? $data->b_name : old('b_name')}}" name="b_name" type="text">
-                        @error('b_name')
+                        <input class="form-control @error('name') is-invalid @enderror" value="{{ isset($data)? $data->name : old('name')}}" name="name" type="text">
+                        @error('name')
                             <span class="error invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>
 
                     <div class="form-group">
                         <label>Price</label>
-                        <input class="form-control @error('b_price') is-invalid @enderror" value="{{ isset($data)? $data->b_price : old('b_price')}}" name="b_price" type="text">
-                        @error('b_price')
+                        <input class="form-control @error('price') is-invalid @enderror" value="{{ isset($data)? $data->price : old('price')}}" name="price" type="text">
+                        @error('price')
                             <span class="error invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>
@@ -81,7 +81,5 @@
 @endsection
 
 @push('custom_js')
-<script>
-    alert('Welcome')
-</script>
+
 @endpush

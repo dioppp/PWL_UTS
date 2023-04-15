@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BundleController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ShoeController;
 use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -26,12 +27,16 @@ Route::get('/', function(){
     return redirect()->route('login');
 })->name('welcome');
 
-Route::middleware(['auth'])->group(function(){
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware(['auth', 'home.access', 'trans.access'])->group(function(){
+    Route::prefix('admin')->group(function(){
+            Route::get('/home', [HomeController::class, 'admin'])->name('admin.home');
+            Route::resource('/bundle', BundleController::class);
+            Route::resource('/trans', TransactionController::class);
+    });
 });
 
-Route::prefix('admin')->middleware(['role.check'])->group(function(){
-        Route::get('/home', [HomeController::class, 'admin'])->name('admin.home');
-        Route::resource('/bundle', BundleController::class);
-        Route::resource('/trans', TransactionController::class);
+Route::middleware(['auth'])->group(function(){
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::resource('/trans', TransactionController::class);
+    Route::resource('/shoe', ShoeController::class);
 });

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Transaction;
 use App\Models\TransactionModel;
 use Illuminate\Http\Request;
 
@@ -18,7 +17,11 @@ class TransactionController extends Controller
         ->join('bundles', 'bundles.id','=','transactions.bund_id')
         ->select('transactions.id as t_id, users.name as u_name, shoes.id as s_id, bundles.name as b_name, bundles.price as b_price, transactions.status as t_status')
         ->get();
-        return view('admin.transaction')->with('data', $trans);
+        if (auth()->user()->role==='admin') {
+            return view('admin.transaction')->with('data', $trans);
+        } else {
+            return view('customer.transaction')->with('data', $trans);
+        }
     }
 
     /**

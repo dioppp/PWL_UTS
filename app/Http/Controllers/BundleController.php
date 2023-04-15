@@ -23,15 +23,20 @@ class BundleController extends Controller
     public function create()
     {
         return view('admin.add_bundle')
-                    ->with('data_form', url('/bundle'));
+                    ->with('data_form', route('bundle.store'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $req)
     {
-        //
+        $req->validate([
+            'name' =>'required|string|unique:bundles,name',
+            'price' =>'required|numeric'
+        ]);
+        $data = BundleModel::create($req->except(['_token']));
+        return redirect()->route('bundle.index')->with('message', 'Data Bundle Berhasil disimpan!!!');
     }
 
     /**
