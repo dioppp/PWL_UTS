@@ -55,9 +55,9 @@ class TransactionController extends Controller
     public function store(Request $request, $id)
     {
         $request->validate([
-            'user_id' => ['required', new ExistInTable('users', 'id')],
-            'shoe_id' => ['required', new ExistInTable('shoes', 'id')],
-            'bund_id' => ['required', new ExistInTable('bundles', 'id')],
+            'user_id' => ['required', 'exists:users,id'],
+            'shoe_id' => ['required', 'exists:shoes,id'],
+            'bund_id' => ['required', 'exists:bundles,id'],
             'delivery' => 'required|in:Yes,No',
             'status' => 'required|in:pending,on process,done'
         ]);
