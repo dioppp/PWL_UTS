@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BundleModel;
+use App\Models\ShoeModel;
 use App\Models\TransactionModel;
+use App\Models\User;
 use App\Rules\ExistInTable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
+use function GuzzleHttp\Promise\all;
 
 class TransactionController extends Controller
 {
@@ -31,11 +36,15 @@ class TransactionController extends Controller
      */
     public function create()
     {
+        $users = User::all();
+        $bundles = BundleModel::all();
+        $shoes = ShoeModel::all();
+
         if (auth()->user()->role === 'admin') {
-            return view('customer.add_transaction')
+            return view('admin.add_transaction', compact('users', 'bundles', 'shoes'))
             ->with('data_form', route('trans.create'));
         } else {
-            return view('admin.add_transaction')
+            return view('customer.add_transaction', compact('bundles', 'shoes'))
             ->with('data_form', route('trans.create'));
         }
     }

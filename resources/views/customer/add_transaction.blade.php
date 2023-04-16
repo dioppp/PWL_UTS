@@ -56,6 +56,22 @@
                     </div>
 
                     <div class="form-group">
+                        <select name="shoe">
+                            @foreach ($shoes as $shoe)
+                                <option value="{{ $shoe->id }}">{{ $shoe->brand }} - {{ $shoe->color }} </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <select name="bundle">
+                            @foreach ($bundles as $bundle)
+                                <option value="{{ $bundle->id }}">{{ $bundle->name }} - {{ $bundle->price }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group">
                         <label>Price</label>
                         <input class="form-control @error('price') is-invalid @enderror" value="{{ isset($data)? $data->price : old('price')}}" name="price" type="text">
                         @error('price')
