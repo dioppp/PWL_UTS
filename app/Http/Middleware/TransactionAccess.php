@@ -20,7 +20,7 @@ class TransactionAccess
         if (Auth::user()->role === "admin") {
             return $next($request);
         } else {
-            return redirect()->route('trans.index');
+            return redirect('/trans');
         }
     }
 }

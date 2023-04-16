@@ -131,5 +131,21 @@
           <i class="fas fa-th-large"></i>
         </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{route('logout')}}" role="button" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+          <img src="{{asset('assets/dist/img/power-outlinee.png')}}" width="25px">
+        </a>
+        <form id="logout-form" action="{{route('logout')}}" method="POST" style="display: none;">
+          @csrf
+        </form>
+        <script>
+          document.querySelector('a[href="{{route('logout')}}"]').addEventListener('click', function(event){
+            event.preventDefault();
+            if (confirm("Apakah Anda yakin ingin logout?")){
+              document.getElementById('logout-form').submit();
+            }
+          });
+        </script>
+      </li>
     </ul>
 </nav>

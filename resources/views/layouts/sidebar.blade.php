@@ -33,16 +33,22 @@
               </p>
             </a>
           </li>
+          @if (auth()->user()->role==='admin')
+            <li class="nav-item">
+              <a href="{{route('bundle.index')}}" class="nav-link">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                  Bundle
+                </p>
+              </a>
+            </li>
+          @endif
           <li class="nav-item">
-            <a href="{{route('bundle.index')}}" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Bundle
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{route('trans.index')}}" class="nav-link">
+            @if (auth()->user()->role==='admin')
+              <a href="{{url('/admin/trans')}}" class="nav-link">  
+            @else
+              <a href="{{url('/trans')}}" class="nav-link">
+            @endif
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Transaction

@@ -43,6 +43,8 @@
             <!-- /.card-header -->
             <div class="card-body">
 
+              <a href="{{url('/trans/create')}}" class="btn btn-sm btn-success my-2">Add Transaction</a>
+
                 <table class="table table-bordered table-striped">
                   <thead>
                     <tr>

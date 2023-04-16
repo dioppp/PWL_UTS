@@ -50,7 +50,7 @@ class TransactionController extends Controller
             'shoe_id' => ['required', new ExistInTable('shoes', 'id')],
             'bund_id' => ['required', new ExistInTable('bundles', 'id')],
             'delivery' => 'required|in:Yes,No',
-            'status' => 'required|in:pending,"on process",done'
+            'status' => 'required|in:pending,on process,done'
         ]);
 
         $output = TransactionModel::where('id', '=', $id)->update($request->except(['_token']));
@@ -81,11 +81,11 @@ class TransactionController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'user_id' => ['required|unique:users,id,'.$id, new ExistInTable('users', 'id')],
-            'shoe_id' => ['required|unique:shoes,id,'.$id, new ExistInTable('shoes', 'id')],
-            'bund_id' => ['required|unique:bundles,id,'.$id, new ExistInTable('bundles', 'id')],
+            'user_id' => ['required','unique:users,id,'.$id, new ExistInTable('users', 'id')],
+            'shoe_id' => ['required','unique:shoes,id,'.$id, new ExistInTable('shoes', 'id')],
+            'bund_id' => ['required', 'unique:bundles,id,'.$id, new ExistInTable('bundles', 'id')],
             'delivery' => 'required|in:Yes,No',
-            'status' => 'required|in:pending,"on process",done'
+            'status' => 'required|in:pending,on process,done'
         ]);
 
         $output = TransactionModel::where('id', '=', $id)->update($request->except(['_token', '_method']));
