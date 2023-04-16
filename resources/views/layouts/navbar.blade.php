@@ -133,7 +133,7 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{{route('logout')}}" role="button" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-          <img src="{{asset('assets/dist/img/power-outlinee.png')}}" width="25px">
+          <img src="{{asset('assets/dist/img/power-outline.png')}}" width="25px">
         </a>
         <form id="logout-form" action="{{route('logout')}}" method="POST" style="display: none;">
           @csrf
