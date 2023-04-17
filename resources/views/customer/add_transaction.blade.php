@@ -26,7 +26,7 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Add Transaction</h3>
+              <h3 class="card-title">Add Transaction by {{auth()->user()->username}}</h3>
 
               <div class="card-tools">
                 <div class="input-group input-group-sm" style="width: 150px;">
@@ -48,35 +48,29 @@
                     {!! (isset($data))? method_field('PUT') : '' !!}
 
                     <div class="form-group">
-                        <label>Name</label>
-                        <input class="form-control @error('name') is-invalid @enderror" value="{{ isset($data)? $data->name : old('name')}}" name="name" type="text">
-                        @error('name')
-                            <span class="error invalid-feedback">{{ $message }}</span>
-                        @enderror
-                    </div>
-
-                    <div class="form-group">
+                        <label for="shoe_id">Shoe</label><br>
                         <select name="shoe_id">
                             @foreach ($shoes as $shoe_id)
-                                <option value="{{ $shoe_id->id }}">{{ $shoe_id->brand }} - {{ $shoe_id->color }} </option>
+                                <option value="{{ $shoe_id->id }}">{{ $shoe_id->brand }} - {{ $shoe_id->color }}</option>
                             @endforeach
                         </select>
                     </div>
 
                     <div class="form-group">
+                        <label for="bund_id">Bundle</label><br>
                         <select name="bund_id">
-                            @foreach ($bundles as $bund_ids)
+                            @foreach ($bundles as $bund_id)
                                 <option value="{{ $bund_id->id }}">{{ $bund_id->name }} - {{ $bund_id->price }}</option>
                             @endforeach
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label>Price</label>
-                        <input class="form-control @error('price') is-invalid @enderror" value="{{ isset($data)? $data->price : old('price')}}" name="price" type="text">
-                        @error('price')
-                            <span class="error invalid-feedback">{{ $message }}</span>
-                        @enderror
+                        <label for="delivery">Delivery</label><br>
+                        <select name="delivery">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
                     </div>
 
                     <div class="form-group">

@@ -10,7 +10,7 @@ class TransactionModel extends Model
     use HasFactory;
     protected $table = 'transactions';
     protected $fillable = [
-      'cust_id',
+      'user_id',
       'shoe_id',
       'bund_id',
       'delivery',

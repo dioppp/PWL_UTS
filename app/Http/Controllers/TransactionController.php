@@ -21,7 +21,7 @@ class TransactionController extends Controller
         $trans = TransactionModel::join('users', 'users.id','=','transactions.user_id')
         ->join('shoes', 'shoes.id','=','transactions.shoe_id')
         ->join('bundles', 'bundles.id','=','transactions.bund_id')
-        ->select('transactions.id as t_id, users.name as u_name, shoes.id as s_id, bundles.name as b_name, bundles.price as b_price, transactions.status as t_status')
+        ->select('transactions.id as t_id', 'users.name as u_name', 'shoes.id as s_id', 'bundles.name as b_name', 'bundles.price as b_price', 'transactions.status as t_status')
         ->get();
         if (Auth::user()->role==='admin') {
             return view('admin.transaction')->with('data', $trans);
@@ -41,17 +41,17 @@ class TransactionController extends Controller
 
         if (auth()->user()->role === 'admin') {
             return view('admin.add_transaction', compact('users', 'bundles', 'shoes'))
-            ->with('data_form', route('trans.create'));
+            ->with('data_form', route('trans.store'));
         } else {
             return view('customer.add_transaction', compact('bundles', 'shoes'))
-            ->with('data_form', route('trans.create'));
+            ->with('data_form', route('trans.store'));
         }
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, $id)
+    public function store(Request $request)
     {
         if (auth()->user()->role==='customer') {
             $request->merge(['user_id'=>auth()->user()->id]);
@@ -61,10 +61,10 @@ class TransactionController extends Controller
             'shoe_id' => ['required', 'exists:shoes,id'],
             'bund_id' => ['required', 'exists:bundles,id'],
             'delivery' => 'required|in:Yes,No',
-            'status' => 'required|in:pending,on process,done'
+            'status' => 'in:pending,on process,done'
         ]);
 
-        $output = TransactionModel::where('id', '=', $id)->update($request->except(['_token']));
+        $output = TransactionModel::create($request->except(['_token']));
         return redirect()->route('trans.index');
     }
 
@@ -86,7 +86,7 @@ class TransactionController extends Controller
         $shoes = ShoeModel::all();
 
         $data = TransactionModel::find($id);
-        return view('data', compact('data', 'bundles', 'users', 'shoes'))
+        return view('admin.add_transaction', compact('data', 'bundles', 'users', 'shoes'))
         ->with('data_form', url('/admin/trans/'.$id));
     }
 
@@ -104,7 +104,7 @@ class TransactionController extends Controller
         ]);
 
         $output = TransactionModel::where('id', '=', $id)->update($request->except(['_token', '_method']));
-        return redirect()->route('trans.index');
+        return redirect('/admin/trans');
     }
 
     /**

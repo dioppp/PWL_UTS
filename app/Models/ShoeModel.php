@@ -12,7 +12,7 @@ class ShoeModel extends Model
     protected $fillable = [
         'brand',
         'color',
-        'cust_Id',
+        'user_id',
         'material'
     ];
 }

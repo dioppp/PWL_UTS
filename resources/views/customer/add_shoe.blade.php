@@ -6,12 +6,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Transaction</h1>
+            <h1>Shoes</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href={{route('admin.home')}}>Home</a></li>
-              <li class="breadcrumb-item active">Transaction</li>
+              <li class="breadcrumb-item active">Shoes</li>
             </ol>
           </div>
         </div>
@@ -26,7 +26,7 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Add Transaction by {{auth()->user()->username}}</h3>
+              <h3 class="card-title">Add Shoe</h3>
 
               <div class="card-tools">
                 <div class="input-group input-group-sm" style="width: 150px;">
@@ -48,47 +48,27 @@
                     {!! (isset($data))? method_field('PUT') : '' !!}
 
                     <div class="form-group">
-                        <label for="user_id">Name</label><br>
-                        <select name="user_id">
-                            @foreach ($users as $user_id)
-                                <option value="{{ $user_id->id }}">{{ $user_id->name }}</option>
-                            @endforeach
-                        </select>
+                        <label>Brand</label>
+                        <input class="form-control @error('brand') is-invalid @enderror" value="{{ isset($data)? $data->brand : old('brand')}}" name="brand" type="text">
+                        @error('brand')
+                            <span class="error invalid-feedback">{{ $message }}</span>
+                        @enderror
                     </div>
 
                     <div class="form-group">
-                        <label for="shoe_id">Shoe</label><br>
-                        <select name="shoe_id">
-                            @foreach ($shoes as $shoe_id)
-                                <option value="{{ $shoe_id->id }}">{{ $shoe_id->brand }} - {{ $shoe_id->color }}</option>
-                            @endforeach
-                        </select>
+                        <label>Color</label>
+                        <input class="form-control @error('color') is-invalid @enderror" value="{{ isset($data)? $data->color : old('color')}}" name="color" type="text">
+                        @error('color')
+                            <span class="error invalid-feedback">{{ $message }}</span>
+                        @enderror
                     </div>
 
                     <div class="form-group">
-                        <label for="bund_id">Bundle</label><br>
-                        <select name="bund_id">
-                            @foreach ($bundles as $bund_id)
-                                <option value="{{ $bund_id->id }}">{{ $bund_id->name }} - {{ $bund_id->price }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="delivery">Delivery</label><br>
-                        <select name="delivery">
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="status">Status</label><br>
-                        <select name="status">
-                            <option value="pending">Pending</option>
-                            <option value="on process">On Process</option>
-                            <option value="done">Done</option>
-                        </select>
+                        <label>Material</label>
+                        <input class="form-control @error('material') is-invalid @enderror" value="{{ isset($data)? $data->material : old('material')}}" name="material" type="text">
+                        @error('material')
+                            <span class="error invalid-feedback">{{ $message }}</span>
+                        @enderror
                     </div>
 
                     <div class="form-group">

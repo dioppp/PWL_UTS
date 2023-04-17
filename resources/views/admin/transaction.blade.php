@@ -71,9 +71,9 @@
                           <td>{{$m->t_status}}</td>
                           <td>
                             <!-- Bikin tombol edit dan delete -->
-                            <a href="{{ url('/admin/'. $m->id.'/edit') }}" class="btn btn-sm btn-warning">edit</a>
+                            <a href="{{ url('/admin/trans/'.$m->t_id.'/edit') }}" class="btn btn-sm btn-warning">edit</a>
 
-                            <form method="POST" action="{{ url('/admin/'.$m->id) }}" >
+                            <form method="POST" action="{{ url('/admin/trans/'.$m->t_id) }}" >
                               @csrf
                               @method('DELETE')
                               <button type="submit" class="btn btn-sm btn-danger">hapus</button>

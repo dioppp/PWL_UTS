@@ -35,6 +35,9 @@
 
   <!-- Content Wrapper. Contains page content -->
   @yield('content')
+  @if(session('message'))
+    <div class="alert alert-danger">{{ session('message') }}</div>
+  @endif
   <!-- /.content-wrapper -->
 
   @include('layouts.footer')

@@ -6,12 +6,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Transaction</h1>
+            <h1>Shoes</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href={{route('admin.home')}}>Home</a></li>
-              <li class="breadcrumb-item active">Transaction</li>
+              <li class="breadcrumb-item active">Shoes</li>
             </ol>
           </div>
         </div>
@@ -26,7 +26,7 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Transaction</h3>
+              <h3 class="card-title">Shoes</h3>
 
               <div class="card-tools">
                 <div class="input-group input-group-sm" style="width: 150px;">
@@ -43,19 +43,17 @@
             <!-- /.card-header -->
             <div class="card-body">
 
-              <a href="{{url('/trans/create')}}" class="btn btn-sm btn-success my-2">Add Transaction</a>
+              <a href="{{route('shoe.create')}}" class="btn btn-sm btn-success my-2">Add Shoe</a>
 
                 <table class="table table-bordered table-striped">
                   <thead>
                     <tr>
                       <th>No</th>
                       <th>ID</th>
-                      <th>Customer</th>
-                      <th>Shoe ID</th>
-                      <th>Bundle</th>
-                      <th>Price</th>
-                      <th>Status</th>
-                      {{-- <th>Action</th> --}}
+                      <th>Brand</th>
+                      <th>Color</th>
+                      <th>Material</th>
+                      <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -63,12 +61,20 @@
                       @foreach($data as $i => $m)
                         <tr>
                           <td>{{++$i}}</td>
-                          <td>{{$m->t_id}}</td>
-                          <td>{{$m->u_name}}</td>
-                          <td>{{$m->s_id}}</td>
-                          <td>{{$m->b_name}}</td>
-                          <td>{{$m->b_price}}</td>
-                          <td>{{$m->t_status}}</td>
+                          <td>{{$m->id}}</td>
+                          <td>{{$m->brand}}</td>
+                          <td>{{$m->color}}</td>
+                          <td>{{$m->material}}</td>
+                          <td>
+                            <!-- Bikin tombol edit dan delete -->
+                            <a href="{{ url('/shoe/'.$m->id.'/edit') }}" class="btn btn-sm btn-warning">edit</a>
+
+                            <form method="POST" action="{{ url('/shoe/'.$m->id) }}" >
+                              @csrf
+                              @method('DELETE')
+                              <button type="submit" class="btn btn-sm btn-danger">hapus</button>
+                            </form>
+                          </td>
                         </tr>
                       @endforeach
                     @else
