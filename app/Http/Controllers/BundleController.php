@@ -55,7 +55,7 @@ class BundleController extends Controller
         $bundle = BundleModel::find($id);
         return view('admin.add_bundle')
         ->with('data', $bundle)
-        ->with('data_form', route('bundle.update'));
+        ->with('data_form', url('/admin/bundle/'.$id));
     }
 
     /**
@@ -78,7 +78,7 @@ class BundleController extends Controller
     public function destroy($id)
     {
         try {
-            BundleModel::findOrFail($id)->delete();
+            BundleModel::where('id', '=', $id)->delete();
             return redirect()->route('bundle.index')->with('message', "Data deleted successfully!!");
         } catch (\Illuminate\Database\QueryException $e) {
             return redirect()->route('bundle.index')->with('message', 'Cannot delete data due to foreign key constrains!!!');

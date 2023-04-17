@@ -87,7 +87,7 @@ class TransactionController extends Controller
 
         $data = TransactionModel::find($id);
         return view('data', compact('data', 'bundles', 'users', 'shoes'))
-        ->with('data_form', route('trans.update'));
+        ->with('data_form', url('/admin/trans/'.$id));
     }
 
     /**
@@ -95,9 +95,6 @@ class TransactionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if (auth()->user()->role==='customer') {
-            $request->merge(['user_id'=>auth()->user()->id]);
-        }
         $request->validate([
             'user_id' => ['required','unique:users,id,'.$id, 'exists:users,id'],
             'shoe_id' => ['required','unique:shoes,id,'.$id, 'exists:shoes,id'],

@@ -60,7 +60,7 @@ class ShoeController extends Controller
         $shoe = ShoeModel::find($id);
         return view('customer.add_shoe')
         ->with('data', $shoe)
-        ->with('data_form', route('shoe.update'));
+        ->with('data_form', url('/shoe/'.$id));
     }
 
     /**
@@ -86,7 +86,7 @@ class ShoeController extends Controller
     public function destroy($id)
     {
         try {
-            ShoeModel::findOrFail($id)->delete();
+            ShoeModel::where('id', '=', $id)->delete();
             return redirect()->route('shoe.index')->with('message', "Data deleted successfully!!");
         } catch (\Illuminate\Database\QueryException $e) {
             return redirect()->route('shoe.index')->with('message', 'Cannot delete data due to foreign key constrains!!!');
