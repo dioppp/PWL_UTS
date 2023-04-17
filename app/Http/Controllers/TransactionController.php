@@ -6,7 +6,6 @@ use App\Models\BundleModel;
 use App\Models\ShoeModel;
 use App\Models\TransactionModel;
 use App\Models\User;
-use App\Rules\ExistInTable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -54,6 +53,9 @@ class TransactionController extends Controller
      */
     public function store(Request $request, $id)
     {
+        if (auth()->user()->role==='customer') {
+            $request->merge(['user_id'=>auth()->user()->id]);
+        }
         $request->validate([
             'user_id' => ['required', 'exists:users,id'],
             'shoe_id' => ['required', 'exists:shoes,id'],
@@ -79,8 +81,12 @@ class TransactionController extends Controller
      */
     public function edit($id)
     {
-        $transaction = TransactionModel::find($id);
-        return view('data', $transaction)
+        $users = User::all();
+        $bundles = BundleModel::all();
+        $shoes = ShoeModel::all();
+
+        $data = TransactionModel::find($id);
+        return view('data', compact('data', 'bundles', 'users', 'shoes'))
         ->with('data_form', route('trans.update'));
     }
 
@@ -89,6 +95,9 @@ class TransactionController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if (auth()->user()->role==='customer') {
+            $request->merge(['user_id'=>auth()->user()->id]);
+        }
         $request->validate([
             'user_id' => ['required','unique:users,id,'.$id, 'exists:users,id'],
             'shoe_id' => ['required','unique:shoes,id,'.$id, 'exists:shoes,id'],

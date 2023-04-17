@@ -77,7 +77,11 @@ class BundleController extends Controller
      */
     public function destroy($id)
     {
-        BundleModel::where('id', '=', $id)->delete();
-        return redirect()->route('admin.home')->with('message', 'Data Bundle id = '.$id.' berhasil dihapus!!!');
+        try {
+            BundleModel::findOrFail($id)->delete();
+            return redirect()->route('bundle.index')->with('message', "Data deleted successfully!!");
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect()->route('bundle.index')->with('message', 'Cannot delete data due to foreign key constrains!!!');
+        }
     }
 }

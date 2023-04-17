@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Shoe;
 use App\Models\ShoeModel;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\TryCatch;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class ShoeController extends Controller
@@ -31,11 +32,12 @@ class ShoeController extends Controller
      */
     public function store(Request $request)
     {
+        $request->merge(['user_id' => auth()->user()->id]);
         $request->validate([
             'brand' => 'required|string|max:30',
             'color' => 'required|string|max:15',
             'material' => 'required|string|max:15',
-            'user_id' => 'required'
+            'user_id' => 'required|exists:users,id'
         ]);
 
         $output = ShoeModel::create($request->except(['_token']));
@@ -66,6 +68,7 @@ class ShoeController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->merge(['user_id'=>auth()->user()->id]);
         $request->validate([
             'brand' => 'required|string|max:30',
             'color' => 'required|string|max:15',
@@ -82,7 +85,11 @@ class ShoeController extends Controller
      */
     public function destroy($id)
     {
-        ShoeModel::where('id','=',$id)->delete();
-        return redirect()->route('shoe.index');
+        try {
+            ShoeModel::findOrFail($id)->delete();
+            return redirect()->route('shoe.index')->with('message', "Data deleted successfully!!");
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect()->route('shoe.index')->with('message', 'Cannot delete data due to foreign key constrains!!!');
+        }
     }
 }

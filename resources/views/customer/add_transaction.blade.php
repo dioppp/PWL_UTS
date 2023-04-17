@@ -56,17 +56,17 @@
                     </div>
 
                     <div class="form-group">
-                        <select name="shoe">
-                            @foreach ($shoes as $shoe)
-                                <option value="{{ $shoe->id }}">{{ $shoe->brand }} - {{ $shoe->color }} </option>
+                        <select name="shoe_id">
+                            @foreach ($shoes as $shoe_id)
+                                <option value="{{ $shoe_id->id }}">{{ $shoe_id->brand }} - {{ $shoe_id->color }} </option>
                             @endforeach
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <select name="bundle">
-                            @foreach ($bundles as $bundle)
-                                <option value="{{ $bundle->id }}">{{ $bundle->name }} - {{ $bundle->price }}</option>
+                        <select name="bund_id">
+                            @foreach ($bundles as $bund_ids)
+                                <option value="{{ $bund_id->id }}">{{ $bund_id->name }} - {{ $bund_id->price }}</option>
                             @endforeach
                         </select>
                     </div>
